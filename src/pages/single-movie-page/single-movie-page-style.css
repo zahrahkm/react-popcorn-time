@@ -1,0 +1,53 @@
+.single-movie-style {
+    /*background-color: #141519!important;*/
+    height: 55vh;
+}
+
+.movie-page-background-image {
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    height: 84vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.movie-page-background-text {
+    color: white;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 80%;
+    padding: 20px;
+    text-align: left !important;
+
+}
+
+
+.movie-page-details {
+    background: transparent !important;
+}
+
+.movie-page-body {
+    display: flex;
+    flex-direction: row;
+    font-size: small;
+    padding-left: 0 !important;
+
+}
+
+.movie-page-items-space {
+    margin: 0 15px;
+}
+
+.movie-page-title {
+    font-size: xx-large !important;
+}
+
+.movie-explanation {
+    font-size: small;
+}
