@@ -27,6 +27,14 @@ const SingleMoviePage = () => {
             })
     }, [])
 
+    useEffect(() => {
+        console.log(document.title)
+        const updateName = () => {
+            document.title = movie.title
+        }
+        updateName()
+    })
+
     return (
         <Fragment>
             <div style={{backgroundImage: `linear-gradient(rgb(0 0 0 / 88%), rgb(0 0 0 / 70%)),url(${background})`}}
@@ -48,9 +56,9 @@ const SingleMoviePage = () => {
                                 <span style={{margin: '0 15px'}}>.</span>
 
                                 {movie?.genres?.map((genre, index, arr) => {
-                                    return <Card.Text
-                                        key={index}>{genre}{index < arr.length - 1 ? ' / ' : ''}</Card.Text>
-
+                                    return (
+                                        <Card.Text key={index}>{genre}{index < arr.length - 1 ? ' / ' : ''}</Card.Text>
+                                    )
                                 })}
 
                                 <span className='movie-page-items-space'>.</span>

@@ -9,13 +9,13 @@ import {Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 const MovieCard = ({movie}) => {
-    const {title, year, images, rating, _id} = movie
+    const {title, year, images, rating, imdb_id} = movie
     const poster = images?.poster
     const percentage = rating?.percentage
 
     return (
         <Col lg={2} md={3}>
-            <Link to={_id}>
+            <Link to={imdb_id}>
                 <Card className='card-style'>
                     <div className='image-container'>
                         <Card.Img src={poster} className='image'/>
