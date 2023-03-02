@@ -1,14 +1,15 @@
-import Container from "react-bootstrap/Container";
-import LoadingMovies from "../../component/loading-movies/loading-movies-component";
+import NavbarComponent from "../../component/navbar/navbar-component";
+import MoviesDataLoading from "../../component/movies-data-loading/movies-data-loading-component";
+import {Fragment} from "react";
 
-
-const MoviesPage = ({movies, fetchMovies, hasMore, render, loading, noMovies}) => {
-    // const {render, movies, fetchMovies, hasMore, loading, noMovies,filteredByGenre} = props;
+const MoviesPage = (props) => {
+    const {render, genreTitle, sortTitle, movies, hasMore, loading, noMovies, fetchMovies} = props
     return (
-        <Container fluid className='container-padding'>
-            <LoadingMovies movies={movies} fetchMovies={fetchMovies} hasMore={hasMore} render={render} loading={loading}
-                           noMovies={noMovies}/>
-        </Container>
+        <Fragment>
+            <NavbarComponent genreTitle={genreTitle} sortTitle={sortTitle}/>
+            <MoviesDataLoading render={render} movies={movies} hasMore={hasMore} loading={loading} noMovies={noMovies}
+                               fetchMovies={fetchMovies}/>} />
+        </Fragment>
     )
 }
 export default MoviesPage;

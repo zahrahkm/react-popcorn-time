@@ -11,7 +11,7 @@ const MoviesList = ({movies}) => {
         <Container fluid>
             <Row>
 
-                {movies.map((movie) => {
+                {movies?.map((movie) => {
                     return <MovieCard movie={movie} key={movie.imdb_id}/>
                 })
                 }

@@ -5,14 +5,12 @@ import MoviesList from "../../component/movies-list/movies-list-component";
 
 
 const LoadingMovies = ({movies, fetchMovies, hasMore, render, loading, noMovies}) => {
-
-    // const {render,movies,fetchMovies,hasMore,loading,noMovies,filteredByGenre}=props;
     return (
         <Container fluid className='container-padding' key={render}>
             <div id="scrollableDiv" className='scroll'>
                 <InfiniteScroll
                     render={false}
-                    dataLength={movies.length}
+                    dataLength={movies?.length}
                     next={fetchMovies}
                     hasMore={hasMore}
                     loader={<h4>Loading...</h4>}

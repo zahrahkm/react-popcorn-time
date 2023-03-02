@@ -30,6 +30,7 @@
 
 .movie-page-details {
     background: transparent !important;
+    border: 0 !important;
 }
 
 .movie-page-body {
