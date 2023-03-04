@@ -15,7 +15,7 @@ const MovieCard = ({movie}) => {
 
     return (
         <Col lg={2} md={3}>
-            <Link to={imdb_id}>
+            <Link to={imdb_id} to={{pathname: `/movies/${imdb_id}`, state: {movie}}}>
                 <Card className='card-style'>
                     <div className='image-container'>
                         <Card.Img src={poster} className='image'/>

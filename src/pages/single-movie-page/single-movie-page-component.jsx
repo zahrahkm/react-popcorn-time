@@ -8,7 +8,6 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 import './single-movie-page-style.css'
 import MovieStar from "../../component/movie-star/movie-star-component";
-import NavbarComponent from "../../component/navbar/navbar-component";
 import {PeopleFill} from "react-bootstrap-icons";
 import CustomToggle from "../../component/custom-toggle/custom-toggle-component";
 
@@ -38,7 +37,6 @@ const SingleMoviePage = () => {
 
     return (
         <Fragment>
-            <NavbarComponent/>
             <div style={{backgroundImage: `linear-gradient(rgb(0 0 0 / 88%), rgb(0 0 0 / 70%)),url(${background})`}}
                  className='movie-page-background-image'/>
             <Container className='movie-page-background-text'>
@@ -50,7 +48,7 @@ const SingleMoviePage = () => {
                     </Col>
                     <Col lg={9}>
                         <Card className='movie-page-details'>
-                            <Accordion flush>
+                            <Accordion flush defaultActiveKey={''}>
                                 <Card.Title className='movie-page-title'>{movie.title}</Card.Title>
                                 <Card.Body className="movie-page-body">
                                     <Card.Text className='movie-page-body-items'>{movie.year}</Card.Text>
@@ -106,8 +104,6 @@ const SingleMoviePage = () => {
                                     <Card.Body>
                                         Sorry the API does not have this part :)
                                     </Card.Body>
-
-
                                 </Accordion.Collapse>
                                 <Card.Text className='movie-explanation'>{movie.synopsis}</Card.Text>
                             </Accordion>

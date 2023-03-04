@@ -24,8 +24,8 @@
 
 }
 
-.navbar-item-active .active {
-    border-bottom: 3px solid #0d6efd !important;
+.navbar-item-active.active {
+    border-bottom: 4px solid #0d6efd !important;
     opacity: 1 !important;
 }
 
