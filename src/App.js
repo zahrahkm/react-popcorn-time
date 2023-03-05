@@ -14,6 +14,7 @@ const App = () => {
 
             <Route path='/' element={<NavbarComponent/>}>
                 <Route index element={<MoviesPage/>}/>
+                <Route path='/:search' element={<MoviesPage/>}/>
                 <Route path='genre/:genreTitle' element={<MoviesPage/>}/>
                 <Route path='sort/:sortTitle' element={<MoviesPage/>}/>
                 <Route path="movies/:imdb_id" element={<SingleMoviePage/>}/>

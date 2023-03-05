@@ -3,19 +3,20 @@ import Container from "react-bootstrap/Container";
 import {Nav} from "react-bootstrap";
 import {Fragment, useState} from "react";
 import {UnlockFill} from "react-bootstrap-icons";
-import {Outlet, useNavigate, useParams} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import NavbarDropdownComponent from "../navbar-dropdown/navbar-dropdown-component";
 import PopcornTime from "../../popcorntime.svg"
 import SearchBox from "../search-box/search-box-component";
 import './navbar-component-style.css'
 
 
-const NavbarComponent = (props) => {
-    const {genreTitle, sortTitle} = useParams()
+const NavbarComponent = () => {
     const dropDownMenuTitleGenre = 'Genre';
     const dropDownMenuTitleSortBy = 'Sort by';
     const [genreVal, setGenreVal] = useState("All")
     const [sortVal, setSortVal] = useState("Trending")
+    const [searchField, setSearchField] = useState('')
+    const [isOpen, setIsOpen] = useState(false)
 
     const sortBy = [
         'Trending',
@@ -62,6 +63,7 @@ const NavbarComponent = (props) => {
     ]
 
     const navigate = useNavigate()
+
     const handleGenreChange = (event) => {
         const genre = event.target.text
         setGenreVal(genre)
@@ -74,6 +76,28 @@ const NavbarComponent = (props) => {
         setGenreVal('All')
         navigate(`/sort/${sort}`)
     }
+
+
+    const handleInputChange = (event) => {
+        const searchString = event.target.value;
+        console.log(searchString)
+        setSearchField(searchString)
+    }
+    const handleSearchText = (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            navigate(`/${searchField}`)
+            console.log('Start search...');
+        }
+    }
+    const handleClose = () => {
+        setIsOpen(false);
+        setSearchField('')
+        if (searchField !== '') {
+            navigate('/')
+        }
+    }
+
     return (
         <Fragment>
             <Navbar className="navbar navbar-dark">
@@ -96,7 +120,11 @@ const NavbarComponent = (props) => {
                         <NavbarDropdownComponent dropDownMenuTitle={dropDownMenuTitleSortBy} selectTitle={sortVal}
                                                  dropdownItems={sortBy} handleChanges={handleSortChange}/>
                     </Nav>
-                    <SearchBox placeholder={'search'}/>
+                    <div>
+                        <SearchBox handleClose={handleClose} handleInputChange={handleInputChange}
+                                   handleSearchText={handleSearchText} searchField={searchField} isOpen={isOpen}
+                                   setIsOpen={setIsOpen}/>
+                    </div>
                     <UnlockFill size={16}/>
                 </Container>
             </Navbar>

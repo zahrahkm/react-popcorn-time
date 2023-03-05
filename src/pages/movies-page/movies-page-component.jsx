@@ -1,7 +1,7 @@
 import NavbarComponent from "../../component/navbar/navbar-component";
 import MoviesDataLoading from "../../component/movies-data-loading/movies-data-loading-component";
 import {Fragment, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 
 const MoviesPage = () => {
     const [movies, setMovies] = useState([]);
@@ -11,15 +11,16 @@ const MoviesPage = () => {
     const [loading, setLoading] = useState(false)
     const [noMovies, setNoMovies] = useState(true)
     const [otherPageMovies, setOtherPageMovies] = useState([])
-    const [genreVal, setGenreVal] = useState("All")
-    const [sortVal, setSortVal] = useState("Trending")
     const {genreTitle, sortTitle} = useParams()
+    const location = useLocation()
+
+    const searchString = location.pathname === '/' ? '' : location.pathname;
 
 
     useEffect(() => {
-        async function getFirstPageMovies(genreVal, sortVal) {
+        async function getFirstPageMovies(genreVal, sortVal, searchString) {
             setLoading(true)
-            const response = await fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://popcorn-time.ga/movies/1?sort=${sortTitle ? `${sortTitle.toLocaleLowerCase()}` : "trending"}&order=-1&genre=${genreTitle ? `${genreTitle.toLocaleLowerCase()}` : "all"}`);
+            const response = await fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://popcorn-time.ga/movies/1?sort=${sortTitle ? `${sortTitle.toLocaleLowerCase()}` : "trending"}&order=-1&genre=${genreTitle ? `${genreTitle.toLocaleLowerCase()}` : "all"}&keywords=${searchString}`);
             const data = await response.json()
             setLoading(false)
             if (noMovies === false && movies.length !== 0) {
@@ -30,16 +31,16 @@ const MoviesPage = () => {
             setMovies(data)
         }
 
-        getFirstPageMovies(genreTitle, sortTitle)
-    }, [genreTitle, sortTitle]);
+        getFirstPageMovies(genreTitle, sortTitle, searchString)
+    }, [genreTitle, sortTitle, location]);
 
     useEffect(() => {
         const getOtherPageMovies = async () => {
-            const response = await fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://popcorn-time.ga/movies/${page}?sort=${sortTitle ? `${sortTitle.toLocaleLowerCase()}` : "trending"}&order=-1&genre=${genreTitle ? `${genreTitle.toLocaleLowerCase()}` : "all"}`)
+            const response = await fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://popcorn-time.ga/movies/${page}?sort=${sortTitle ? `${sortTitle.toLocaleLowerCase()}` : "trending"}&order=-1&genre=${genreTitle ? `${genreTitle.toLocaleLowerCase()}` : "all"}&keywords=${searchString}`)
             const otherData = await response.json()
             setOtherPageMovies(otherData)
         }
-        getOtherPageMovies()
+        getOtherPageMovies(searchString)
     }, [page, genreTitle, sortTitle])
     const fetchMovies = async () => {
         console.log('fetch')
