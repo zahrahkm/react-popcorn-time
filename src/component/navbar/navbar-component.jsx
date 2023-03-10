@@ -1,9 +1,9 @@
 import {Navbar} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Nav} from "react-bootstrap";
-import {Fragment, useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import {UnlockFill} from "react-bootstrap-icons";
-import {Outlet, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
 import NavbarDropdownComponent from "../navbar-dropdown/navbar-dropdown-component";
 import PopcornTime from "../../popcorntime.svg"
 import SearchBox from "../search-box/search-box-component";
@@ -13,8 +13,8 @@ import './navbar-component-style.css'
 const NavbarComponent = () => {
     const dropDownMenuTitleGenre = 'Genre';
     const dropDownMenuTitleSortBy = 'Sort by';
-    const [genreVal, setGenreVal] = useState("All")
-    const [sortVal, setSortVal] = useState("Trending")
+    const [genreVal, setGenreVal] = useState("")
+    const [sortVal, setSortVal] = useState("")
     const [searchField, setSearchField] = useState('')
     const [isOpen, setIsOpen] = useState(false)
 
@@ -63,17 +63,35 @@ const NavbarComponent = () => {
     ]
 
     const navigate = useNavigate()
+    const {genreTitle, sortTitle} = useParams()
+
+    useEffect(() => {
+        if (genreTitle === undefined) {
+            setGenreVal(genres[0])
+        } else {
+            setGenreVal(genreTitle)
+        }
+    }, [genreVal])
+
+    useEffect(() => {
+        if (sortTitle === undefined) {
+            setSortVal(sortBy[0])
+        } else {
+            setSortVal(sortTitle)
+        }
+    }, [sortVal])
 
     const handleGenreChange = (event) => {
         const genre = event.target.text
         setGenreVal(genre)
-        setSortVal('Trending')
+        setSortVal(sortBy[0])
         navigate(`/genre/${genre}`)
     }
+
     const handleSortChange = (event) => {
         const sort = event.target.text
         setSortVal(sort)
-        setGenreVal('All')
+        setGenreVal(genres[0])
         navigate(`/sort/${sort}`)
     }
 
@@ -82,13 +100,15 @@ const NavbarComponent = () => {
         const searchString = event.target.value;
         console.log(searchString)
         setSearchField(searchString)
+        event.preventDefault();
     }
     const handleSearchText = (event) => {
         if (event.key === 'Enter') {
             event.preventDefault();
-            navigate(`/${searchField}`)
+            navigate(`/search?${searchField}`)
             console.log('Start search...');
         }
+
     }
     const handleClose = () => {
         setIsOpen(false);
