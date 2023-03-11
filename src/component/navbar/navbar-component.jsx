@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import {Nav} from "react-bootstrap";
 import {Fragment, useEffect, useState} from "react";
 import {UnlockFill} from "react-bootstrap-icons";
-import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Outlet, useNavigate, useParams} from "react-router-dom";
 import NavbarDropdownComponent from "../navbar-dropdown/navbar-dropdown-component";
 import PopcornTime from "../../popcorntime.svg"
 import SearchBox from "../search-box/search-box-component";
@@ -145,7 +145,9 @@ const NavbarComponent = () => {
                                    handleSearchText={handleSearchText} searchField={searchField} isOpen={isOpen}
                                    setIsOpen={setIsOpen}/>
                     </div>
-                    <UnlockFill size={16}/>
+                    <Nav.Link href="/sign-in">
+                        <UnlockFill size={16}></UnlockFill>
+                    </Nav.Link>
                 </Container>
             </Navbar>
             <Outlet/>
