@@ -14,7 +14,7 @@ const SearchBox = ({handleInputChange, handleSearchText, handleClose, searchFiel
             </InputGroup.Text>
             {isOpen && (
                 <Fragment>
-                    <FormControl type='search' autoFocus id='mySearch' onChange={handleInputChange}
+                    <FormControl autoFocus id='mySearch' onChange={handleInputChange}
                                  onKeyDown={handleSearchText} placeholder="Search" className='form-style'/>
                     {searchField && (
                         <InputGroup.Text className='input-text-style'>

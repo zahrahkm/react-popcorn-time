@@ -30,7 +30,6 @@ const MoviesPage = () => {
             }
             setMovies(data)
         }
-
         getFirstPageMovies()
     }, [genreTitle, sortTitle, searchQuery]);
 

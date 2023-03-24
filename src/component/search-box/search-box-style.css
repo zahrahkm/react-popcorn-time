@@ -1,6 +1,11 @@
+.input-text-style {
+    background-color: #17181c !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+}
+
 .search-icon-style {
     color: #adadad;
-    margin: 0 8px 0 0;
 }
 
 .search-icon-style:active {
@@ -20,28 +25,10 @@
     background-color: transparent !important;
 }
 
-.form-style, .input-text-style {
-    background-color: transparent !important;
-    border-radius: 20px !important;
-    color: #adadad !important;
-    border: 1px solid #161617 !important;
-    transition: none !important;
+
+.form-style {
+    background-color: #322e39 !important;
+    border-color: #322e39 !important;
+    color: #f1f1f1 !important;
     padding: 0 !important;
-}
-
-.form-style:focus-visible {
-    transition: none !important;
-    border: 1px solid #161617 !important;
-}
-
-.form-style:active {
-    transition: none !important;
-    border: 1px solid #161617 !important;
-}
-
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
-    -webkit-appearance: none;
 }

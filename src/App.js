@@ -4,7 +4,7 @@ import NavbarComponent from "./component/navbar/navbar-component";
 import SingleMoviePage from "./pages/single-movie-page/single-movie-page-component";
 import MoviesPage from "./pages/movies-page/movies-page-component";
 import {useEffect} from "react";
-import Test from "./test";
+import SignUpPageComponent from "./pages/sign-up-page/sign-up-page-component";
 import SignInPageComponent from "./pages/sign-in-page/sign-in-page-component";
 
 const App = () => {
@@ -21,6 +21,7 @@ const App = () => {
                 <Route path='sort/:sortTitle' element={<MoviesPage/>}/>
                 <Route path="movies/:imdb_id" element={<SingleMoviePage/>}/>
                 <Route path="sign-in" element={<SignInPageComponent/>}/>
+                <Route path="sign-up" element={<SignUpPageComponent/>}/>
             </Route>
         </Routes>
     )

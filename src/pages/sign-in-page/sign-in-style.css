@@ -1,4 +1,4 @@
-.sign-in-background {
+.auth-background {
     background-image: url("../../dark-background.jpg");
     height: 85vh;
     background-repeat: no-repeat;
@@ -7,9 +7,9 @@
     -webkit-filter: blur(8px);
 }
 
-.sign-in-container {
+.auth-container {
     position: absolute;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
@@ -18,16 +18,70 @@
     text-align: center;
     display: flex;
     justify-content: center;
+
 }
 
-.sign-in-card {
-    width: 50%;
+.auth-card {
+    width: 40%;
     display: flex;
     align-items: center;
 }
 
-.sign-in-card-title-style {
+.auth-card-title-style {
     font-size: x-large !important;
     color: #0d6efd;
 }
 
+.form-button-style {
+    display: flex;
+    flex-direction: column;
+}
+
+.button-style {
+    color: darkgray;
+}
+
+.button-style-text {
+    color: #0d6efd;
+    background: transparent;
+    border: 0;
+}
+
+.input-style {
+    color: #ffffff !important;
+    background-color: #322e39 !important;
+    border: 0 !important;
+}
+
+.input-style:focus {
+    border-color: #0d6efd !important;
+}
+
+.form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+    border-color: #0d6efd !important;
+    box-shadow: 0 0 0 0.25rem rgb(93 122 218 / 25%) !important;
+}
+
+.google-button {
+    background-color: #322e39 !important;
+    border: 0 !important;
+    color: darkgrey !important;
+}
+
+.hr-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.hr-style {
+    color: darkgray !important;
+    width: 45%;
+}
+
+.hr-text {
+    display: flex;
+    color: darkgray;
+    align-content: center;
+    flex-wrap: wrap;
+}
