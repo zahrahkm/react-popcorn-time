@@ -1,17 +1,16 @@
-import {Fragment, useEffect, useState} from "react";
+import {Fragment, useContext, useState} from "react";
 import {
     signInWithGooglePopUp,
     createUserDocumentFromAuth,
-    auth,
-    createAuthUserWithEmailAndPassword, signInWithEmail
+    signInWithEmail, signOutUser
 } from "../../utils/firebase/firebase-utils";
 import {Button, Card, Form} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import './sign-in-style.css'
-import {CardText, Google, PersonAdd} from "react-bootstrap-icons";
-import {signInWithEmailAndPassword} from "firebase/auth";
-import SignUpPageComponent from "../sign-up-page/sign-up-page-component";
+import {Google} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../contexts/user-context";
+
 
 const userDefaultData = {
     email: '',
@@ -25,7 +24,7 @@ const SignInPageComponent = () => {
 
     const logGoogleUser = async () => {
         const {user} = await signInWithGooglePopUp()
-        await createUserDocumentFromAuth(user)
+        console.log(user)
     }
     const handleSignInUserChanges = (event) => {
         const {name, value} = event.target;
@@ -34,10 +33,20 @@ const SignInPageComponent = () => {
     const clearFormFields = () => {
         setUserFieldData(userDefaultData);
     }
+
+    //for get user detail and save it in context we  have to do two things:
+    //1. use "useContext" hook
+    //2. bring actual context 'UserContext' obj itself,
+    //  that is going to give us back whatever value is passed in for the value.
+    //   the value is the 'currentUser,setCurrentUser'
+    // const{currentUser,setCurrentUser}=useContext(UserContext)
+
+    const navigate = useNavigate()
+
     const handleSignInForm = async (event) => {
         event.preventDefault()
         try {
-            const response = await signInWithEmail(email, password)
+            await signInWithEmail(email, password)
             return clearFormFields()
 
         } catch (error) {
@@ -56,11 +65,6 @@ const SignInPageComponent = () => {
         }
     }
 
-
-    const navigate = useNavigate()
-
-
-    console.log(userFieldData)
     return (
         <Fragment>
             <div className='auth-background'></div>
@@ -94,9 +98,9 @@ const SignInPageComponent = () => {
                         </Form>
                         <span>
                             <i className='button-style'>Don't have an account?</i>
-                            <button className='button-style-text' onClick={() => {
-                                navigate('/sign-up')
-                            }}> sign up</button>
+                                <button className='button-style-text' onClick={() => {
+                                    navigate('/sign-up')
+                                }}> sign up</button>
                         </span>
 
                         <div className='hr-box mt-3'>

@@ -1,13 +1,15 @@
 import {Navbar} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Nav} from "react-bootstrap";
-import {Fragment, useEffect, useState} from "react";
-import {UnlockFill} from "react-bootstrap-icons";
+import {Fragment, useContext, useEffect, useState} from "react";
+import {LockFill, UnlockFill} from "react-bootstrap-icons";
 import {Outlet, useNavigate, useParams} from "react-router-dom";
 import NavbarDropdownComponent from "../navbar-dropdown/navbar-dropdown-component";
 import PopcornTime from "../../popcorntime.svg"
 import SearchBox from "../search-box/search-box-component";
 import './navbar-component-style.css'
+import {UserContext} from "../../contexts/user-context";
+import {signOutUser} from "../../utils/firebase/firebase-utils";
 
 
 const NavbarComponent = () => {
@@ -61,7 +63,7 @@ const NavbarComponent = () => {
         'War',
         'Western'
     ]
-
+    const {currentUser} = useContext(UserContext)
     const navigate = useNavigate()
     const {genreTitle, sortTitle} = useParams()
 
@@ -145,9 +147,16 @@ const NavbarComponent = () => {
                                    handleSearchText={handleSearchText} searchField={searchField} isOpen={isOpen}
                                    setIsOpen={setIsOpen}/>
                     </div>
-                    <Nav.Link href="/sign-in">
-                        <UnlockFill size={16}></UnlockFill>
-                    </Nav.Link>
+                    {currentUser ? (
+                        <Nav.Link href="/sign-out" onClick={signOutUser}>
+                            <LockFill size={16}></LockFill>
+                        </Nav.Link>
+                    ) : (
+                        <Nav.Link href="/sign-in">
+                            <UnlockFill size={16}></UnlockFill>
+                        </Nav.Link>
+                    )}
+
                 </Container>
             </Navbar>
             <Outlet/>

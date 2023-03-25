@@ -8,6 +8,7 @@ import SignUpPageComponent from "./pages/sign-up-page/sign-up-page-component";
 import SignInPageComponent from "./pages/sign-in-page/sign-in-page-component";
 
 const App = () => {
+
     useEffect(() => {
         document.title = 'Popcorn-Time'
     }, [document.title])

@@ -1,4 +1,4 @@
-import {Fragment, useState} from "react";
+import {Fragment, useContext, useState} from "react";
 import Container from "react-bootstrap/Container";
 import {Button, Card, Form, FormControl} from "react-bootstrap";
 import FormCheckLabel from "react-bootstrap/FormCheckLabel";
@@ -6,6 +6,7 @@ import {Google, PersonAdd} from "react-bootstrap-icons";
 import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase-utils";
 import '../sign-in-page/sign-in-style.css'
 import {useNavigate} from "react-router-dom";
+import {UserContext} from "../../contexts/user-context";
 
 const defaultFormFields = {
     displayName: '',
