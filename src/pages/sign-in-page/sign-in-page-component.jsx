@@ -9,7 +9,7 @@ import Container from "react-bootstrap/Container";
 import './sign-in-style.css'
 import {Google} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
-import {UserContext} from "../../contexts/user-context";
+import {UserContext} from "../../contexts/user-context/user-context";
 
 
 const userDefaultData = {

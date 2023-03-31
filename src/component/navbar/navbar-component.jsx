@@ -8,9 +8,9 @@ import NavbarDropdownComponent from "../navbar-dropdown/navbar-dropdown-componen
 import PopcornTime from "../../popcorntime.svg"
 import SearchBox from "../search-box/search-box-component";
 import './navbar-component-style.css'
-import {UserContext} from "../../contexts/user-context";
+import {UserContext} from "../../contexts/user-context/user-context";
 import {signOutUser} from "../../utils/firebase/firebase-utils";
-
+import {MoviesContext} from "../../contexts/movies-context/movies-context";
 
 const NavbarComponent = () => {
     const dropDownMenuTitleGenre = 'Genre';
@@ -19,6 +19,8 @@ const NavbarComponent = () => {
     const [sortVal, setSortVal] = useState("")
     const [searchField, setSearchField] = useState('')
     const [isOpen, setIsOpen] = useState(false)
+    const {setSelectedGenre} = useContext(MoviesContext)
+    const {setSelectedSort} = useContext(MoviesContext)
 
     const sortBy = [
         'Trending',
@@ -70,16 +72,21 @@ const NavbarComponent = () => {
     useEffect(() => {
         if (genreTitle === undefined) {
             setGenreVal(genres[0])
+            setSelectedGenre(genres[0])
         } else {
             setGenreVal(genreTitle)
+            setSelectedGenre(genreTitle)
         }
     }, [genreVal])
 
     useEffect(() => {
         if (sortTitle === undefined) {
             setSortVal(sortBy[0])
+            setSelectedSort(sortBy[0])
+
         } else {
             setSortVal(sortTitle)
+            setSelectedSort(sortTitle)
         }
     }, [sortVal])
 

@@ -1,4 +1,4 @@
-import {Component} from "react";
+import {Component, useState} from "react";
 import Col from "react-bootstrap/Col";
 import Card from 'react-bootstrap/Card';
 import './movie-card-style.css'
@@ -7,11 +7,22 @@ import {EyeFill, HeartFill} from "react-bootstrap-icons";
 import RatingNumber from "../rating-number/rating-number-component";
 import {Nav} from "react-bootstrap";
 import {Link} from "react-router-dom";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 const MovieCard = ({movie}) => {
     const {title, year, images, rating, imdb_id} = movie
     const poster = images?.poster
     const percentage = rating?.percentage
+    const [favoriteMovies, setFavoriteMovies] = useState([])
+    const [heartIconColor, setHeartIconColor] = useState('#b4afaf')
+    const handleFavorites = (event) => {
+        event.preventDefault()
+        favoriteMovies.push({movie})
+        console.log(favoriteMovies)
+        setHeartIconColor('red')
+    }
+
 
     return (
         <Col lg={2} md={3}>
@@ -21,7 +32,23 @@ const MovieCard = ({movie}) => {
                         <Card.Img src={poster} className='image'/>
                         <div className='top-overlay'>
                             <div className='right'>
-                                <HeartFill className='heart-fill-icon' color='#b4afaf' size={20}/>
+                                <OverlayTrigger
+                                    key={movie.imdb_id}
+                                    placement='bottom'
+                                    overlay={
+                                        <Tooltip id={`tooltip-'${movie.title}'`}>
+                                            {favoriteMovies ? `remove from bookmarks` : `Add to bookmarks`}
+
+
+                                        </Tooltip>
+                                    }
+                                >
+                                    <i>
+                                        <HeartFill className='heart-fill-icon' color={heartIconColor} size={20}
+                                                   onClick={handleFavorites}/>
+                                    </i>
+                                </OverlayTrigger>
+
                             </div>
                             <div className='left'>
                                 <EyeFill className='eye-fill-icon' color='#b4afaf' size={20}/>

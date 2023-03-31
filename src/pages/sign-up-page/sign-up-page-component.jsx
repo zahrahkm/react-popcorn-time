@@ -6,7 +6,7 @@ import {Google, PersonAdd} from "react-bootstrap-icons";
 import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "../../utils/firebase/firebase-utils";
 import '../sign-in-page/sign-in-style.css'
 import {useNavigate} from "react-router-dom";
-import {UserContext} from "../../contexts/user-context";
+import {UserContext} from "../../contexts/user-context/user-context";
 
 const defaultFormFields = {
     displayName: '',

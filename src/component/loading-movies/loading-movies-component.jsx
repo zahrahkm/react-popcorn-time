@@ -2,9 +2,13 @@ import Container from "react-bootstrap/Container";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingSpinner from "../../component/loading-spinner/loading-spinner-component";
 import MoviesList from "../../component/movies-list/movies-list-component";
+import {useContext} from "react";
+import {MoviesContext} from "../../contexts/movies-context/movies-context";
 
 
-const LoadingMovies = ({movies, fetchMovies, hasMore, render, loading, noMovies}) => {
+const LoadingMovies = () => {
+    const {movies, fetchMovies, hasMore, noMovies, loading, render} = useContext(MoviesContext)
+    console.log({movies})
     return (
         <Container fluid className='container-padding' key={render}>
             <div id="scrollableDiv" className='scroll'>
