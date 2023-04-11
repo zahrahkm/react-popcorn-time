@@ -1,26 +1,35 @@
-import {Component, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import Col from "react-bootstrap/Col";
 import Card from 'react-bootstrap/Card';
 import './movie-card-style.css'
 import MovieStar from "../movie-star/movie-star-component";
 import {EyeFill, HeartFill} from "react-bootstrap-icons";
 import RatingNumber from "../rating-number/rating-number-component";
-import {Nav} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import Tooltip from "react-bootstrap/Tooltip";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import {FavoriteMoviesContext} from "../../contexts/favorite-movies-context/favorite-movies-context";
+import {UserContext} from "../../contexts/user-context/user-context";
+
 
 const MovieCard = ({movie}) => {
     const {title, year, images, rating, imdb_id} = movie
     const poster = images?.poster
     const percentage = rating?.percentage
-    const [favoriteMovies, setFavoriteMovies] = useState([])
-    const [heartIconColor, setHeartIconColor] = useState('#b4afaf')
-    const handleFavorites = (event) => {
-        event.preventDefault()
-        favoriteMovies.push({movie})
-        console.log(favoriteMovies)
-        setHeartIconColor('red')
+    const {addMovieToFavorite} = useContext(FavoriteMoviesContext)
+    const {isFavorite} = useContext(FavoriteMoviesContext)
+    const {currentUser} = useContext(UserContext)
+    const navigate = useNavigate()
+
+    const addMovieToFavoriteContext = (e) => {
+        e.preventDefault()
+        if (currentUser) {
+            addMovieToFavorite(movie)
+
+        } else {
+            alert('Please login into your account.')
+            navigate('/sign-in')
+        }
     }
 
 
@@ -37,15 +46,14 @@ const MovieCard = ({movie}) => {
                                     placement='bottom'
                                     overlay={
                                         <Tooltip id={`tooltip-'${movie.title}'`}>
-                                            {favoriteMovies ? `remove from bookmarks` : `Add to bookmarks`}
-
-
+                                            {'Add to bookmarks'}
                                         </Tooltip>
+
                                     }
                                 >
-                                    <i>
-                                        <HeartFill className='heart-fill-icon' color={heartIconColor} size={20}
-                                                   onClick={handleFavorites}/>
+                                    <i onClick={addMovieToFavoriteContext}>
+                                        <HeartFill className='heart-fill-icon' color={isFavorite ? 'red' : 'grey'}
+                                                   size={20}/>
                                     </i>
                                 </OverlayTrigger>
 

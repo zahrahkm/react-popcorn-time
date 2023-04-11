@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import {UserProvider} from "./contexts/user-context/user-context";
 import {MoviesProvider} from "./contexts/movies-context/movies-context";
+import {FavoriteMoviesProvider} from "./contexts/favorite-movies-context/favorite-movies-context";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -17,7 +18,9 @@ root.render(
         <BrowserRouter>
             <UserProvider>
                 <MoviesProvider>
-                    <App/>
+                    <FavoriteMoviesProvider>
+                        <App/>
+                    </FavoriteMoviesProvider>
                 </MoviesProvider>
             </UserProvider>
         </BrowserRouter>

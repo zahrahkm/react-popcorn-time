@@ -7,6 +7,7 @@ import {createAuthUserWithEmailAndPassword, createUserDocumentFromAuth} from "..
 import '../sign-in-page/sign-in-style.css'
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../contexts/user-context/user-context";
+import {FavoriteMoviesContext} from "../../contexts/favorite-movies-context/favorite-movies-context";
 
 const defaultFormFields = {
     displayName: '',
@@ -19,9 +20,10 @@ const SignUpPageComponent = () => {
     const {displayName, email, password, confirmPassword} = inputField;
     const handleInputChanges = (event) => {
         const {name, value} = event.target;
+        console.log(name, value)
         setInputField({...inputField, [name]: value})
     }
-
+    const {favoriteMovies} = useContext(FavoriteMoviesContext)
     const clearFormFields = () => {
         setInputField(defaultFormFields);
     }

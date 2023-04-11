@@ -4,11 +4,11 @@ import LoadingSpinner from "../../component/loading-spinner/loading-spinner-comp
 import MoviesList from "../../component/movies-list/movies-list-component";
 import {useContext} from "react";
 import {MoviesContext} from "../../contexts/movies-context/movies-context";
+import {FavoriteMoviesContext} from "../../contexts/favorite-movies-context/favorite-movies-context";
 
 
 const LoadingMovies = () => {
     const {movies, fetchMovies, hasMore, noMovies, loading, render} = useContext(MoviesContext)
-    console.log({movies})
     return (
         <Container fluid className='container-padding' key={render}>
             <div id="scrollableDiv" className='scroll'>

@@ -33,6 +33,7 @@ export const MoviesProvider = ({children}) => {
     const searchQuery = searchString.substring(1)
     const [selectedGenre, setSelectedGenre] = useState('');
     const [selectedSort, setSelectedSort] = useState('');
+    const [isFav, setIsFav] = useState(false)
 
 
     useEffect(() => {

@@ -10,6 +10,7 @@ import './sign-in-style.css'
 import {Google} from "react-bootstrap-icons";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../../contexts/user-context/user-context";
+import {FavoriteMoviesContext} from "../../contexts/favorite-movies-context/favorite-movies-context";
 
 
 const userDefaultData = {
@@ -42,11 +43,12 @@ const SignInPageComponent = () => {
     // const{currentUser,setCurrentUser}=useContext(UserContext)
 
     const navigate = useNavigate()
-
+    const {favoriteMovies} = useContext(FavoriteMoviesContext)
     const handleSignInForm = async (event) => {
         event.preventDefault()
         try {
-            await signInWithEmail(email, password)
+            const {user} = await signInWithEmail(email, password)
+            await createUserDocumentFromAuth(user)
             return clearFormFields()
 
         } catch (error) {
