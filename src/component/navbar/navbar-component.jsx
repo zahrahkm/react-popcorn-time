@@ -5,7 +5,7 @@ import {Fragment, useContext, useEffect, useState} from "react";
 import {LockFill, UnlockFill} from "react-bootstrap-icons";
 import {Outlet, useNavigate, useParams} from "react-router-dom";
 import NavbarDropdownComponent from "../navbar-dropdown/navbar-dropdown-component";
-import PopcornTime from "../../popcorntime.svg"
+// import PopcornTime from "../../popcorntime.svg"
 import SearchBox from "../search-box/search-box-component";
 import './navbar-component-style.css'
 import {UserContext} from "../../contexts/user-context/user-context";
@@ -131,11 +131,11 @@ const NavbarComponent = () => {
         <Fragment>
             <Navbar className="navbar navbar-dark">
                 <Navbar.Brand href="/" className="navbar-brand">
-                    <img
-                        className="popcorn-image"
-                        src={PopcornTime}
-                        alt="Popcorn Time logo"
-                    />
+                    {/*<img*/}
+                    {/*    className="popcorn-image"*/}
+                    {/*    src={PopcornTime}*/}
+                    {/*    alt="Popcorn Time logo"*/}
+                    {/*/>*/}
                     <span>Popcorn Time</span>
                 </Navbar.Brand>
                 <Container fluid className="nav-shadow">
