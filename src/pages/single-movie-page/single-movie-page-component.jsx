@@ -112,12 +112,12 @@ const SingleMoviePage = () => {
                                 </Accordion.Collapse>
                                 <Card.Text className='movie-explanation'>{movie.synopsis}</Card.Text>
                             </Accordion>
-                            <Card.Body className="movie-page-body bottom-items">
-                                {downloadBadges.map((download) => {
-                                    return <Button
-                                        onClick={() => downloadTorrent(`${movie.torrents.en[download].url}`)}>Download</Button>
-                                })}
-                            </Card.Body>
+                            {/*<Card.Body className="movie-page-body bottom-items">*/}
+                            {/*    {downloadBadges.map((download) => {*/}
+                            {/*        return <Button*/}
+                            {/*            onClick={() => downloadTorrent(`${movie.torrents.en[download].url}`)}>Download</Button>*/}
+                            {/*    })}*/}
+                            {/*</Card.Body>*/}
                         </Card>
                     </Col>
                 </Row>
