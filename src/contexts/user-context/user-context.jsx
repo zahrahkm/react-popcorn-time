@@ -1,9 +1,9 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import {
     createUserDocumentFromAuth,
-    getFavoriteMoviesFromAuth,
     onAuthStateChangedListener
 } from "../../utils/firebase/firebase-utils";
+import {useNavigate} from "react-router-dom";
 
 //as the actual value you want to access
 export const UserContext = createContext({
@@ -16,11 +16,13 @@ export const UserContext = createContext({
 export const UserProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null)
     const value = {currentUser, setCurrentUser}
+    const navigate = useNavigate()
 
     useEffect(() => {
         const unsubscribe = onAuthStateChangedListener((user) => {
             if (user) {
                 createUserDocumentFromAuth(user)
+                navigate('/movies')
             }
             console.log(user)
             setCurrentUser(user)

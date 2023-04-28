@@ -1,6 +1,5 @@
 import {createContext, useEffect, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
-import LoadingMovies from "../../component/loading-movies/loading-movies-component";
 
 
 export const MoviesContext = createContext({
@@ -15,7 +14,7 @@ export const MoviesContext = createContext({
     noMovies: true,
     OtherPageMovies: [],
     setOtherPageMovies: () => [],
-    genreTitle: 'zall',
+    genreTitle: 'all',
     sortTitle: 'trending'
 })
 

@@ -29,8 +29,10 @@
 
 
 .movie-page-details {
+    display: flex;
     background: transparent !important;
     border: 0 !important;
+    height: 100% !important;
 }
 
 .movie-page-body {
@@ -38,6 +40,7 @@
     flex-direction: row;
     font-size: small;
     padding-left: 0 !important;
+    align-items: flex-start !important;
 
 }
 
@@ -51,4 +54,10 @@
 
 .movie-explanation {
     font-size: small;
+}
+
+
+.bottom-items {
+    display: flex;
+    align-items: flex-end !important;
 }

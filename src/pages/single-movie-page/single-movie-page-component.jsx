@@ -10,12 +10,14 @@ import './single-movie-page-style.css'
 import MovieStar from "../../component/movie-star/movie-star-component";
 import {PeopleFill} from "react-bootstrap-icons";
 import CustomToggle from "../../component/custom-toggle/custom-toggle-component";
-
+import Button from 'react-bootstrap/Button';
+import {downloadTorrent} from "../../utils/webTorrent/webTorrent";
 
 const SingleMoviePage = () => {
     const [movie, setMovie] = useState([])
     const [background, setBackground] = useState('grey');
     const [ratingPercentage, setRatingPercentage] = useState(1);
+    const downloadBadges = ['720p', '1080p', '2106']
     let {imdb_id} = useParams();
     useEffect(() => {
         fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://popcorn-time.ga/movie/${imdb_id}`)
@@ -33,6 +35,11 @@ const SingleMoviePage = () => {
     useEffect(() => {
         document.title = movie?.title
     },)
+
+
+    // const getMovieFromTorrent=(movie)=>{
+    //     downloadTorrent(movie)
+    // }
 
 
     return (
@@ -80,8 +87,6 @@ const SingleMoviePage = () => {
                                             <CustomToggle eventKey={movie._id}><PeopleFill style={{color: '#fff'}}
                                                                                            size={16}/></CustomToggle>
                                         </i>
-
-
                                     </OverlayTrigger>
                                     <span className='movie-page-items-space'>.</span>
                                     <OverlayTrigger
@@ -107,6 +112,12 @@ const SingleMoviePage = () => {
                                 </Accordion.Collapse>
                                 <Card.Text className='movie-explanation'>{movie.synopsis}</Card.Text>
                             </Accordion>
+                            <Card.Body className="movie-page-body bottom-items">
+                                {downloadBadges.map((download) => {
+                                    return <Button
+                                        onClick={() => downloadTorrent(`${movie.torrents.en[download].url}`)}>Download</Button>
+                                })}
+                            </Card.Body>
                         </Card>
                     </Col>
                 </Row>

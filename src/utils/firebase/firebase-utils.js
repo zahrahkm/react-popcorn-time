@@ -10,8 +10,6 @@ import {
 } from "firebase/auth";
 import {getDoc, setDoc, arrayUnion, arrayRemove, getFirestore, doc, updateDoc} from "firebase/firestore";
 import 'firebase/firestore';
-import {useContext} from "react";
-import {FavoriteMoviesContext} from "../../contexts/favorite-movies-context/favorite-movies-context";
 
 
 const firebaseConfig = {

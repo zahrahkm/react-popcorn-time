@@ -7,7 +7,7 @@ import {MoviesContext} from "../../contexts/movies-context/movies-context";
 import {FavoriteMoviesContext} from "../../contexts/favorite-movies-context/favorite-movies-context";
 
 
-const LoadingMovies = () => {
+const MoviesPage = () => {
     const {movies, fetchMovies, hasMore, noMovies, loading, render} = useContext(MoviesContext)
     return (
         <Container fluid className='container-padding' key={render}>
@@ -29,4 +29,4 @@ const LoadingMovies = () => {
     )
 
 }
-export default LoadingMovies;
+export default MoviesPage;
