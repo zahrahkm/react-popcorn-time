@@ -1,0 +1,22 @@
+.container-style {
+    background-color: beige;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    width: 50rem;
+
+}
+
+.medium {
+
+    height: 20rem;
+}
+
+.small {
+
+    height: 8rem;
+}
+
+.large {
+    height: 40rem;
+}
