@@ -13,14 +13,13 @@ import 'firebase/firestore';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyA218gtFy_xQD29HjXVwvr4l8YwOeSfRoM",
-    authDomain: "popcorn-b4bd9.firebaseapp.com",
-    projectId: "popcorn-b4bd9",
-    storageBucket: "popcorn-b4bd9.appspot.com",
-    messagingSenderId: "133576215515",
-    appId: "1:133576215515:web:4f093164670c2d05ec35fe"
+    apiKey: "AIzaSyDpKjXxqV7Ndgb8SxkV2uTiibHa6WdmCRE",
+    authDomain: "popcorn-react.firebaseapp.com",
+    projectId: "popcorn-react",
+    storageBucket: "popcorn-react.appspot.com",
+    messagingSenderId: "253492709956",
+    appId: "1:253492709956:web:c75c00bbadaa8b18480a11"
 };
-
 
 const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
@@ -46,7 +45,7 @@ export const createUserDocumentFromAuth = async (auth, additionalInfo, movie = {
         displayName,
         email,
         photoURL,
-        favoriteMovies: {},
+        favoriteMovies: [],
         createdAt: new Date(),
         ...additionalInfo
     };
@@ -59,7 +58,7 @@ export const createUserDocumentFromAuth = async (auth, additionalInfo, movie = {
         }
     }
     const querySnapshotOfFav = await querySnapshot.data().favoriteMovies;
-
+    console.log(querySnapshot.data().favoriteMovies)
 
     if (Object.keys(movie).length > 0) {
         if (querySnapshotOfFav.length === 0) {

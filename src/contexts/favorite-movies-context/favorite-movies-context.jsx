@@ -19,8 +19,7 @@ const addFavoriteItem = (favoriteMovies, movieToAdd) => {
 
 export const FavoriteMoviesContext = createContext({
     favoriteMovies: [],
-    addFavorite: () => {
-    },
+    addFavorite: () => [],
     isFavorite: false,
     setIsFavorite: () => false
 })
@@ -32,7 +31,6 @@ export const FavoriteMoviesProvider = ({children}) => {
 
     const {currentUser} = useContext(UserContext)
     const addMovieToFavorite = async (movieToAdd) => {
-        console.log(movieToAdd)
         await createUserDocumentFromAuth(currentUser, {}, movieToAdd)
         // isFavorite(addFavoriteItem(favoriteMovies,movieToAdd))
 
