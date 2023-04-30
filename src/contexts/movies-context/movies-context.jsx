@@ -1,4 +1,4 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
 import {useLocation, useParams} from "react-router-dom";
 
 
@@ -18,9 +18,25 @@ export const MoviesContext = createContext({
     sortTitle: 'trending'
 })
 
-
+const movieReducer = (state, action) => {
+    const {type, payload} = action;
+    console.log(action)
+    switch (type) {
+        case 'SET_MOVIES':
+            return {
+                ...state,
+                movies: payload
+            }
+        default:
+            throw new Error(`Unhandled type ${type} in Reducer!`)
+    }
+}
 export const MoviesProvider = ({children}) => {
-    const [movies, setMovies] = useState([])
+    // const [movies, setMovies] = useState([])
+    const [{movies}, dispatch] = useReducer(movieReducer, {movies: []})
+    const setMovies = (movie) => {
+        dispatch({type: 'SET_MOVIES', payload: movie})
+    }
     const [page, setPage] = useState(2)
     const [hasMore, setHasMore] = useState(true)
     const [render, setRender] = useState(true)

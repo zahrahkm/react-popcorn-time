@@ -1,4 +1,4 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
 import {
     createUserDocumentFromAuth,
     onAuthStateChangedListener
@@ -8,12 +8,28 @@ import {
 export const UserContext = createContext({
     currentUser: null,
     setCurrentUser: () => null
-
 });
 
-
+export const userReducer = (state, action) => {
+    const {type, payload} = action;
+    console.log(action)
+    switch (type) {
+        case 'SET_CURRENT_USER':
+            return {
+                ...state,
+                currentUser: payload
+            }
+        default:
+            throw new Error(`Unhandled type ${type} in Reducer!`)
+    }
+}
 export const UserProvider = ({children}) => {
-    const [currentUser, setCurrentUser] = useState(null)
+    // const [currentUser, setCurrentUser] = useState(null)
+    const [{currentUser}, dispatch] = useReducer(userReducer, {currentUser: null})
+    const setCurrentUser = (user) => {
+        dispatch({type: 'SET_CURRENT_USER', payload: user})
+        console.log('dispatched')
+    }
     const value = {currentUser, setCurrentUser}
 
     useEffect(() => {
