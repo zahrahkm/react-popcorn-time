@@ -11,7 +11,7 @@ import MovieStar from "../../component/movie-star/movie-star-component";
 import {PeopleFill} from "react-bootstrap-icons";
 import CustomToggle from "../../component/custom-toggle/custom-toggle-component";
 import Button from 'react-bootstrap/Button';
-import {downloadTorrent} from "../../utils/webTorrent/webTorrent";
+
 
 const SingleMoviePage = () => {
     const [movie, setMovie] = useState([])
@@ -36,24 +36,18 @@ const SingleMoviePage = () => {
         document.title = movie?.title
     },)
 
-
-    // const getMovieFromTorrent=(movie)=>{
-    //     downloadTorrent(movie)
-    // }
-
-
     return (
         <Fragment>
             <div style={{backgroundImage: `linear-gradient(rgb(0 0 0 / 88%), rgb(0 0 0 / 70%)),url(${background})`}}
                  className='movie-page-background-image'/>
             <Container className='movie-page-background-text'>
-                <Row style={{flexWrap: "nowrap", marginTop: '20px'}} className='single-movie-style'>
-                    <Col lg={3}>
+                <Row style={{marginTop: '20px'}} className='single-movie-style'>
+                    <Col lg={3} md={12} xs={12}>
                         <Card bg={'Dark'.toLowerCase()}>
                             <Card.Img src={movie?.images?.banner}/>
                         </Card>
                     </Col>
-                    <Col lg={9}>
+                    <Col lg={9} md={12} xs={12}>
                         <Card className='movie-page-details'>
                             <Accordion flush defaultActiveKey={''}>
                                 <Card.Title className='movie-page-title'>{movie.title}</Card.Title>
@@ -112,12 +106,6 @@ const SingleMoviePage = () => {
                                 </Accordion.Collapse>
                                 <Card.Text className='movie-explanation'>{movie.synopsis}</Card.Text>
                             </Accordion>
-                            {/*<Card.Body className="movie-page-body bottom-items">*/}
-                            {/*    {downloadBadges.map((download) => {*/}
-                            {/*        return <Button*/}
-                            {/*            onClick={() => downloadTorrent(`${movie.torrents.en[download].url}`)}>Download</Button>*/}
-                            {/*    })}*/}
-                            {/*</Card.Body>*/}
                         </Card>
                     </Col>
                 </Row>

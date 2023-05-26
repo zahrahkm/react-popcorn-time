@@ -4,7 +4,6 @@ const CustomToggle = ({children, eventKey}) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
         console.log('totally custom!'),
     );
-
     return (
         <button
             type="button"

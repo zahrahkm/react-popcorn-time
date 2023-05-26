@@ -1,4 +1,4 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import {createContext, useContext, useEffect, useReducer, useState} from "react";
 import {
     auth, db, getFavoriteMoviesFromAuth
 } from "../../utils/firebase/firebase-utils";
@@ -24,9 +24,25 @@ export const FavoriteMoviesContext = createContext({
     setIsFavorite: () => false
 })
 
+const favoriteMoviesReducer = (state, action) => {
+    const {type, payload} = action
+    switch (type) {
+        case 'FAVORITE_MOVIES':
+            return {
+                ...state,
+                favoriteMovies: payload
+            }
+        default :
+            throw new Error(`Unhandled type ${type} in Reducer!`)
+    }
+}
 
 export const FavoriteMoviesProvider = ({children}) => {
-    const [favoriteMovies, setFavoriteMovies] = useState([])
+    // const [favoriteMovies, setFavoriteMovies] = useState([])
+    const [{favoriteMovies}, dispatch] = useReducer(favoriteMoviesReducer, {favoriteMovies: []})
+    const setFavoriteMovies = (movie) => {
+        dispatch({type: 'FAVORITE_MOVIES', payload: movie})
+    }
     const [isFavorite, setIsFavorite] = useState(false);
 
     const {currentUser} = useContext(UserContext)
