@@ -20,7 +20,7 @@ const SingleMoviePage = () => {
     const downloadBadges = ['720p', '1080p', '2106']
     let {imdb_id} = useParams();
     useEffect(() => {
-        fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://popcorn-time.ga/movie/${imdb_id}`)
+        fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://shows.cf/movie/${imdb_id}`)
             .then(response => response.json())
             .then(movie => {
                 setMovie(movie);
