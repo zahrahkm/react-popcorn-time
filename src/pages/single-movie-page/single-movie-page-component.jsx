@@ -27,7 +27,6 @@ const SingleMoviePage = () => {
                 setBackground(movie?.images?.fanart)
                 setRatingPercentage(movie?.rating?.percentage)
             })
-
             .catch(err => {
                 console.log(err);
             })
