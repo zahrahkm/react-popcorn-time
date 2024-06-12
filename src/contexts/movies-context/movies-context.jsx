@@ -54,7 +54,7 @@ export const MoviesProvider = ({children}) => {
     useEffect(() => {
         async function getFirstPageMovies() {
             setLoading(true)
-            const response = await fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://shows.cf/movies/1?sort=${selectedSort ? `${selectedSort.toLocaleLowerCase()}` : "trending"}&order=-1&genre=${selectedGenre ? `${selectedGenre.toLocaleLowerCase()}` : "all"}&keywords=${searchQuery}`);
+            const response = await fetch(`https://shy-meadow-371f.vsg24.workers.dev/?https://uxert.link/movies/1?sort=${selectedSort ? `${selectedSort.toLocaleLowerCase()}` : "trending"}&order=-1&genre=${selectedGenre ? `${selectedGenre.toLocaleLowerCase()}` : "all"}&keywords=${searchQuery}`);
             const data = await response.json()
             setLoading(false)
             if (noMovies === false && movies.length !== 0) {
